@@ -1,0 +1,15 @@
+    {% extends 'groupsapp/Base.html' %}
+
+    {% block head %}
+    {% load static %}
+    <title>Minion</title>
+    <script type="text/javascript" src="{% static 'groupsapp\js\minion.js' %}" defer></script>
+    {% endblock %}
+    
+    {% block body %}
+    <div class="minion_back">
+        <div class="button_minion" id="minion_activate"></div>
+        <a href="{% url 'register' %}">Регистрация</a>
+        <a>{{request.user.id}}</a>
+    </div>
+    {% endblock %}

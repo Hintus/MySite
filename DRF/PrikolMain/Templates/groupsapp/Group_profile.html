@@ -1,0 +1,60 @@
+{% extends 'groupsapp/base.html' %}
+
+{% block head %}
+{% load static %}
+<title> {{group.name}} </title>
+<link rel="stylesheet" href="{% static 'groupsapp/css/group_profile.css' %}"/>
+<script type="text/javascript" src="{% static 'groupsapp\js\group.js' %}" defer></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="profile_main_block">
+    <div class="profile_black_block">
+        <div>
+            <a id="group_button" class="profile_button">Group</a>
+            <a id = "chats_button" class="profile_button profile_button_chats">Chats</a>
+            <a id = "basket_button" class="profile_button profile_button_basket">Basket</a>
+            <a id = "members_button" class="profile_button_Members">Members</a>
+        </div>
+        <div id = "group_block" class="profile_content_block">
+            <div class="group_profile_avatar">
+                {% if group.photo %}
+                <img class="avatar_img" src="{{group.photo.url}}">
+                {%else%}
+                <img  class="avatar_img" src="https://storage.googleapis.com/mwt/files/uploads/avatars/user_15216/f2a9bdc0f96a7e017f843e86ca704e3fa7a74778.png">
+                {%endif%}
+            </div>
+            <div class="info_block">
+                <div class="info_name">Info</div>
+                <p class="info">Members: {{group.countOfMembers}}</p>
+                <p class="info">Date: {{group.meeting_Date.day}}.{{group.meeting_Date.month}}.{{group.meeting_Date.year}}</p>
+                <p class="info">Time: {{group.meeting_Date.hour}} :
+                {% if group.meeting_Date.minute <= 9%}
+                0{{group.meeting_Date.minute}}
+                {%else%}
+                {{group.meeting_Date.minute}}
+                {%endif%}
+                </p>
+                {% if group.is_open %}
+                <p class="info">Status: Open</p>
+                {%else%}
+                <p class="info">Status: Closed</p>
+                {%endif%}
+            </div>
+            <div class="profile_name">{{group.name}}</div>
+            <div class="tag">@{{group.slug}}</div>
+            <div class ="discription_title">Description</div>
+            <div class="discription_content">{{group.description|linebreaks}}</div>
+        </div>
+        <div id = "chats_block" class="profile_content_block hidden">Chats</div>
+        <div id = "basket_block" class="profile_content_block hidden">Basket</div>
+        <div id = "members_block" class="profile_content_block hidden">
+            <div class="members_block">
+                <div class="members_name">Members of group</div>
+                <div class="members_count"> Count of members: {{group.countOfMembers}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

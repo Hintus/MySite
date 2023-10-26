@@ -1,0 +1,72 @@
+{% extends 'groupsapp/Base.html' %}
+
+{% block head %}
+{% load static %}
+<title>Groups</title>
+<script type="text/javascript" src="{% static 'groupsapp\js\search.js' %}" defer></script>
+
+{% endblock %}
+{% block body %}
+<div class="groups_bigest_page">
+    <div class="big_table">
+        <div class="group_table center_text">
+            <p class="white_text">Groups</p>
+        </div>
+        <div class="center_table">
+            <div class="stripes">
+                <a href="" class="add_group_but">
+                    <img class="img_ref" src='https://i.ibb.co/9yff0fL/plus.png'></img>
+                </a>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <button class="name_text button_stripes">Name</button>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <button class="name_text button_stripes">Members</button>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <button class="name_text button_stripes">Meeting Date</button>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <button class="name_text button_stripes">Status</button>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <div id="search_div" class="div_search_groups">
+                    <img id="img_search" class="img_search_groups"
+                         src="https://cdn-icons-png.flaticon.com/128/3917/3917132.png"></img>
+                </div>
+            </div>
+            {% for i in data %}
+            <div class="stripes">
+                <p style="font-size: 25px; margin-left: 25px; margin-right: 13px;" > {{ forloop.counter }}
+                </p>
+                    <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <div class="name_text">
+                    {% if i.name|length > 20 %}
+                    {{ i.name|slice:"0:15" }}...
+                    {% else %}
+                    {{ i.name|slice:"0:20" }}
+                    {%endif%}
+                </div>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <div class="name_text">{{ i.countOfMembers }} / {{i.MaxCountOfMembers}}</div>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <div class="name_text">{{ i.meeting_Date.day }}.{{ i.meeting_Date.month }}.{{ i.meeting_Date.year }}
+                </div>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <div class="name_text">
+                    {% if i.is_open %}
+                    Opened
+                    {% else %}
+                    Closed
+                    {% endif %}
+                </div>
+                <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                <a class="a_join">
+                    {% if i.is_open %}
+                    <a class="join_groups_but" href="{{ i.get_absolute_url }}">Join</a>
+                    {%else%}
+                    <a class="join_groups_but pass_groups_but" href="{{ i.get_absolute_url }}">Pass</a>
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'groupsapp/css/styles.css' %}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="top_line">
+        <button class="points" id = "points">...</button>
+        <div class="top_text">
+            <a class="white_text" href="{% url 'market' %}"> Market</a>
+        </div>
+        <div class="top_text">
+            <a class="white_text" href="{% url 'Main_page' %}">Main Page</a>
+        </div>
+        <div class="top_text">
+            <a class="white_text" href="{% url 'groups' %}"> Groups</a>
+        </div>
+        {% if request.user.is_authenticated %}
+        <a class="profile_user" href="{% url 'profile' %}">
+            Profile
+        </a>
+        <a class="log_out_ico" href="{% url 'logout' %}">
+            <img style="height: 25px; width:25px;" src="https://i.ibb.co/9wVq6YM/exit-1.png">
+        </a>
+        {% else %}
+        <a class="log_button center_text" href="{% url 'login' %}">Log in</a>
+        <a class="reg_button center_text" href="{% url 'register' %}">Registration</a>
+        {% endif %}
+    </div>
+    {% block body %}
+    {% endblock %}
+    
+</body>
+</html>
+

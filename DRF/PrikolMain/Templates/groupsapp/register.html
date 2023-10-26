@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'groupsapp/css/styles.css' %}"/>
+</head>
+<body>
+<img class="register_gif" src="https://i.pinimg.com/originals/88/1e/97/881e975af06ff67857544c7b64e65cbc.gif" alt="хуй">
+<a class="back_but" href="{% url 'Main_page' %}">
+    <img style="height: 25px; width:25px;" src="https://i.ibb.co/ZVmK3RZ/home.png" class="home_img">
+</a>
+<div class="register_block">
+    <div class="reg_title">Registration</div>
+    <form method="post" class="form">
+        {% csrf_token %}
+
+        {% for f in form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}:</label> <br>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+
+        <button type="submit" class="reg_but">Accept</button>
+    </form>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+{% extends 'groupsapp/Base.html' %}
+
+{% block head %}
+{% load static %}
+<title>Matket</title>
+{% endblock %}
+
+{% block body %}
+<div class="groups_bigest_page">
+    <div class="big_table">
+        <div class="group_table center_text">
+            <p class="white_text">Market</p>
+        </div>
+        <div class="center_table market_center_table">
+            <button class="market_burger_button"><img
+                    src="https://cdn-icons-png.flaticon.com/128/3917/3917215.png"
+                    class="img_market_burger">
+            </button>
+                    <button id="search" class="button_search_market" style="width: 40px;">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/128/3917/3917132.png"
+                            class="img_market_burger">
+                    </button>
+            {% for i in goods %}
+            <div class="market_tables">
+                <div class="name_text ">{{i.name}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

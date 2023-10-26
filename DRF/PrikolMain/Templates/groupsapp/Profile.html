@@ -1,0 +1,58 @@
+{% extends 'groupsapp/Base.html' %}
+
+{% block head %}
+{% load static %}
+<title></title>
+<link rel="stylesheet" href="{% static 'groupsapp/css/profile.css' %}"/>
+<script type="text/javascript" src="{% static 'groupsapp\js\profile.js' %}" defer></script>
+<script type="text/javascript" src="{% static 'groupsapp\js\edit_profile.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+<div class="profile_main_block">
+    <div class="profile_black_block">
+        <a id="profile_button" class="profile_button">Profile</a>
+        <a style="transform: translate(-260px,82px); opacity: 50%;" id ="group_button" class="profile_button">Groups</a>
+        <div class="profile_content_block" id="profile_content">
+            <a class="edit_but" id="edit_but">
+                <img style="height: 25px; width: 25px;" src="https://i.ibb.co/FnSDqDK/pencil.png" id="edit_img">
+            </a>
+            <div class="main_avatar">
+                {% if request.user.is_superuser %}
+                <img src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" class="crown">
+                {%endif%}
+                <div class="profile_avatar">
+                    <img src="{{user.profile.profile_pic}}" alt="ОШИБКА">
+                    <!-- <img class="avatar_img" src="https://i.ibb.co/sJsQCnZ/hamster.jpg"> -->
+                </div>
+                   <div class="profile_online"></div>
+                   <div class="profile_ico">
+                       <img class="mess_img" src="https://i.ibb.co/wgjx240/envelope.png">
+                   </div>
+            </div>
+            <div class="profile_name">
+                {{request.user.username}}
+            </div>
+            <div class="profile_info">
+                <p class="profile_info_text"><b>Age:</b> {{user.profile.age}}</p>
+                <p class="profile_info_text"><b>Telefone number:</b> {{user.profile.telefone_num}}</p>
+                <p class="profile_info_text"><b style="font-size: 16px;">Interests:</b> {{user.profile.interests}}</p>
+                <p class="profile_info_text"><b>Registered sinse:</b> {{request.user.date_joined.day}}.{{request.user.date_joined.month}}.{{request.user.date_joined.year}}</p>       
+            </div>
+            <div class="teg">@Homiak</div>
+            <div class="profile_group_back">       
+            <div class="profile_group_message">
+                Ваши группы
+            </div>
+                <div class ="profile_group_content_block">
+                </div>
+            </div>
+        </div>
+        <div class="profile_content_block" id="group_content">
+            <div class="group_content">
+                <div class="your_group_text">Your Groups</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,226 @@
+.profile_black_block{
+    height: 100%;
+    width: 84.5%;
+    background-color: black;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_main_block{
+    width: 100%;
+    height: 700px;
+    background-color: #35167E;
+    position: absolute;
+    transform: translate(-8px,-8px);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_content_block{
+    height: 580px;
+    width: 80%;
+    border: 3px solid white;
+    background-color: #373737;
+    border-radius: 20px;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute; 
+}
+
+.profile_button{
+    height: 36px;
+    width: 150px;
+    border: 3px solid rgb(245, 0, 0);
+    background-color: white;
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    transform: translate(-490px,82px);
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 3px;
+}
+
+.profile_name{
+    width: 250px;
+    height: 45px;
+    border-radius: 13px;
+    border: 2px solid #ffffff;
+    background: #000000;
+    margin-top: -2px;
+    color: white;
+    font-size: 23px;
+    text-align: center;
+    padding: 4px;
+}
+
+.group_profile_avatar{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 20px;
+    border: 3px solid rgb(255, 255, 255);
+    overflow: hidden;
+    position:absolute;
+    left: 135px;
+    top:-15px;
+    transform: translate(-130px,0px);
+}
+
+.profile_button_chats{
+    transform: translate(-320px,82px);
+    opacity: 50%;
+}
+
+.group_content{
+    margin-top: 15px;
+    width: 1100px;
+    height: 530px;
+    border-radius: 20px;
+    background: black;
+    padding: 8px;
+}
+
+.profile_button_basket{
+    transform: translate(-150px,82px);
+    opacity: 50%;
+}
+
+.profile_button_Members{
+    opacity: 50%;
+    height: 36px;
+    width: 150px;
+    border: 3px solid rgb(245, 0, 0);
+    background-color: white;
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    transform: translate(20px,82px);
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 3px;
+}
+
+.avatar_img{
+    height: 100%;
+    width: 100%;
+    transform: translate(-10px,0px);
+}
+
+.tag{
+    position: absolute;
+    height: 35px;
+    width: 150px;
+    background-color: #000000;
+    border: 2px solid white;
+    border-radius: 10px;
+    transform: translate(-400px,220px);
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.discription_title{
+    width: 170px;
+    height: 45px;
+    border-radius: 13px;
+    border: 2px solid #ffffff;
+    background: #000000;
+    margin-top: -2px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 1px;
+    position: absolute;
+    transform: translate(0px,280px);
+}
+
+.discription_content{
+    padding-left: 10px;
+    color:white;
+    background-color: #000000;
+    border: 2px solid white;
+    border-radius: 20px;
+    height: 250px;
+    width: 97%;
+    position: absolute;
+    transform: translate(0px,307px);
+}
+
+.info_block{
+    width: 350px;
+    height: 180px;
+    border-radius: 13px;
+    border: 2px solid #ffffff;
+    background: #000000;
+    margin-top: -2px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 1px;
+    position: absolute;
+    transform: translate( 320px,60px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-top: 20px;
+}
+
+.info{
+    margin: 0px;
+    margin-top: 5px;
+}
+
+.info_name{
+    width: 100px;
+    height: 40px;
+    border-radius: 13px;
+    border: 2px solid #ffffff;
+    background: #000000;
+    margin-top: -2px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    transform: translate(120px,-30px);
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.members_block{
+    border-radius: 20px;
+    background: #FFF;
+    width: 1050px;
+    height: 530px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.members_name{
+    margin-left: 35%;
+    width: 30%;
+    margin-top: 5px;
+    color: black;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 10px;
+    background: #FFF;
+}
+
+.members_count{
+    margin-left: 30px;
+    font-size: 20px;
+}
