@@ -16,8 +16,9 @@ urlpatterns = [
     path('register/', RegisterUser.as_view(), name='register'),
     path('Profile/', Profile, name='profile'),
     path('Profile/<int:Profile_user_id>', show_profile, name='show_profile_url'),
-    path('group/<slug:group_slug>', show_group, name='group_profile_url')
-    # path('AddGroup/', AddGroup, name='add_group')
+    path('group/<slug:group_slug>', show_group, name='group_profile_url'),
+    path('GroupCreationForm/', GroupCreationForm, name='add_group'),
+    path('GroupCreationForm/CreateGroup', CreateGroup, name='CreateGroup')
 ]
 
 if settings.DEBUG:

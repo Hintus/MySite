@@ -1,0 +1,46 @@
+{% extends 'groupsapp/base.html' %}
+
+{% block head %}
+{% load static %}
+<title>Create Group</title>
+<script type="text/javascript">
+function fun1() {
+    var chek = document.getElementById('checkbox')
+    var pas = document.getElementById('Password')
+    var pastit = document.getElementById('PassTit')
+    if(chek.checked){
+        Password.disabled = false
+        Password.style.opacity = '100%'
+    }else{
+        Password.style.visability
+        Password.disabled = true
+        Password.value = ''
+        Password.style.opacity = '0%'
+    }
+}
+</script>
+{% endblock %}
+{% block body %}
+<div class="groups_bigest_page">
+    <div class="big_table">
+        <div class="add_group_title">
+            Add New <br> Group
+        </div>
+            <form method="post" class="add_group_form" action="CreateGroup">
+                {% csrf_token %}
+                {{ form.as_p }}
+                Group Name:<input class = "group_form_input" type="text" name = 'group name'>
+                Meeting place: <input class = "group_form_input meeting_place" type="text" name='meeting place'>
+                <div class="date_form_input">   
+                    Meeting Date:
+                    <p class="DateWriteLike">write like: 2023-10-26 09:16:39</p>
+                    <input class = "group_form_input date_input_group_form" type="text" name="meeting date">
+                </div>
+                <input onchange="fun1()" type="checkbox" class="checkbox" name="checkbox" id="checkbox">
+                Password: <input class = "group_form_input PasInput" type="text" name = "Password" id="Password">
+                Discription:<textarea class = "group_form_input discription_form_input" type="text" name="discription"></textarea>
+                <button type="submit" class="form_create_but"> Create Group </button>
+            </form>
+    </div>
+</div>
+{% endblock %}

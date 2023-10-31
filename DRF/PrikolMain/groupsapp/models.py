@@ -1,8 +1,11 @@
+from xmlrpc.client import DateTime
+
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 
 
 # Create your models here.
@@ -11,8 +14,8 @@ class MyGroups(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     countOfMembers = models.IntegerField(default=0)
-    MaxCountOfMembers = models.IntegerField(default=50)
-    is_open = models.BooleanField(default='true')
+    is_open = models.BooleanField(default=True)
+    password = models.TextField(blank=True, null=True)
     meeting_Date = models.DateTimeField(blank=True)
     meeting_place = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add=True)

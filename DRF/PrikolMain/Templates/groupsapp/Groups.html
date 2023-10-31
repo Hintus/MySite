@@ -14,7 +14,7 @@
         </div>
         <div class="center_table">
             <div class="stripes">
-                <a href="" class="add_group_but">
+                <a href="{% url 'add_group' %}" class="add_group_but">
                     <img class="img_ref" src='https://i.ibb.co/9yff0fL/plus.png'></img>
                 </a>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
@@ -44,7 +44,7 @@
                     {%endif%}
                 </div>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
-                <div class="name_text">{{ i.countOfMembers }} / {{i.MaxCountOfMembers}}</div>
+                <div class="name_text">{{ i.countOfMembers }}</div>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
                 <div class="name_text">{{ i.meeting_Date.day }}.{{ i.meeting_Date.month }}.{{ i.meeting_Date.year }}
                 </div>
@@ -59,7 +59,7 @@
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
                 <a class="a_join">
                     {% if i.is_open %}
-                    <a class="join_groups_but" href="{{ i.get_absolute_url }}">Join</a>
+                    <a class="join_groups_but" href="{{ i.get_absolute_url }}">View</a>
                     {%else%}
                     <a class="join_groups_but pass_groups_but" href="{{ i.get_absolute_url }}">Pass</a>
                     {% endif %}

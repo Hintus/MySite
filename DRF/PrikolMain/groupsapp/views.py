@@ -1,3 +1,5 @@
+import transliterate
+from transliterate import slugify
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
@@ -68,14 +70,29 @@ class ShowProfilePage(DetailView):
         return context
 
 
-# def AddGroup(request):
-#     if request.method == 'POST':
-#         form = AddGroupForm(request.POST)
-#         if form.is_valid():
-#             print(form.cleaned_data)
-#     else:
-#         form = AddGroupForm()
-#     return render(request, 'groupsapp/AddGroup.html', {'form': form})
+def GroupCreationForm(request):
+    return render(request, 'groupsapp/GroupCreationForm.html')
+
+
+def CreateGroup(request):
+    Group_name = request.POST['group name']
+    Group_place = request.POST['meeting place']
+    Group_Date = request.POST.get('meeting date', '2023-10-26 09:16:39')
+    Group_Discription = request.POST['discription']
+
+    if MyGroups.objects.filter(name=Group_name).exists():
+        return render(request, 'groupsapp/GroupCreationForm.html')
+    else:
+        new_group = MyGroups.objects.create(name=Group_name,
+                                            meeting_place=Group_place,
+                                            meeting_Date=Group_Date,
+                                            slug=slugify(Group_name),
+                                            description=Group_Discription)
+        new_group.save()
+
+        group = get_object_or_404(MyGroups, slug=new_group.slug)
+
+        return render(request, 'groupsapp/Group_profile.html', {'group': group})
 
 
 class RegisterUser(CreateView):

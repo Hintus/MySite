@@ -33,5 +33,6 @@ class AddGroupForm(forms.Form):
 
     class Meta:
         model = MyGroups
-        fields = ['name', 'countOfMembers', 'MaxCountOfMembers', 'is_open', 'meeting_Date', 'meeting_place', 'photo',
-                  'description']
+        fields = ['name', 'countOfMembers', 'MaxCountOfMembers',
+                'is_open', 'meeting_Date', 'meeting_place', 'photo',
+                'description']
