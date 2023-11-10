@@ -4,7 +4,7 @@
 {% load static %}
 <title>Groups</title>
 <script type="text/javascript" src="{% static 'groupsapp\js\search.js' %}" defer></script>
-
+<script type="text/javascript" src="{% static 'groupsapp\js\Group_create_deny.js' %}" defer></script>
 {% endblock %}
 {% block body %}
 <div class="groups_bigest_page">
@@ -13,10 +13,16 @@
             <p class="white_text">Groups</p>
         </div>
         <div class="center_table">
-            <div class="stripes">
+            <div class="stripes">                
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'add_group' %}" class="add_group_but">
                     <img class="img_ref" src='https://i.ibb.co/9yff0fL/plus.png'></img>
                 </a>
+                {% else %}
+                <button class="add_group_but" style="background-color: white;" id = "deny">
+                    <img class="img_ref" src='https://i.ibb.co/9yff0fL/plus.png'></img>
+                </button>
+                {% endif %}
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
                 <button class="name_text button_stripes">Name</button>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
@@ -50,20 +56,30 @@
                 </div>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
                 <div class="name_text">
-                    {% if i.is_open %}
-                    Opened
-                    {% else %}
+                    {% if i.password %}
                     Closed
+                    {% else %}
+                    Opened
                     {% endif %}
                 </div>
                 <img class="band" src="https://cdn-icons-png.flaticon.com/512/1/1625.png"></img>
+                {% if request.user.is_authenticated %}
                 <a class="a_join">
-                    {% if i.is_open %}
-                    <a class="join_groups_but" href="{{ i.get_absolute_url }}">View</a>
-                    {%else%}
+                    {% if i.password %}
                     <a class="join_groups_but pass_groups_but" href="{{ i.get_absolute_url }}">Pass</a>
+                    {%else%}
+                    <a class="join_groups_but" href="{{ i.get_absolute_url }}">View</a>
                     {% endif %}
-                </a>
+                </a>    
+                {%else%}
+                <a class="a_join">
+                    {% if i.password %}
+                        <button style="padding-left: 15px; padding-top: 0px;" class="join_groups_but pass_groups_but" id = "deny2">Pass</a>
+                    {%else%}
+                        <button style="padding-left: 15px; padding-top: 0px;" class="join_groups_but" id = "deny3">View</a>
+                    {% endif %}
+                </a> 
+                {% endif %}
             </div>
             {% endfor %}
         </div>

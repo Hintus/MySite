@@ -46,13 +46,31 @@
             <div class="tag">@{{group.slug}}</div>
             <div class ="discription_title">Description</div>
             <div class="discription_content">{{group.description|linebreaks}}</div>
+            <a class="group_join_but" href="{% url 'add_member' group.name %}">Join Group</a>
         </div>
         <div id = "chats_block" class="profile_content_block hidden">Chats</div>
         <div id = "basket_block" class="profile_content_block hidden">Basket</div>
         <div id = "members_block" class="profile_content_block hidden">
-            <div class="members_block">
-                <div class="members_name">Members of group</div>
-                <div class="members_count"> Count of members: {{group.countOfMembers}}</div>
+            <div style="width: 100%; display: flex;">
+                <div class="members_count"> Count of members:
+                    {%for i in group.members.all%}
+                        {%if forloop.last%} 
+                            {{forloop.counter}}
+                        {% endif %}
+                    {%endfor%}
+                </div>
+                <div class="all_members_block">
+                    {%for i in group.members.all%} 
+                        {% if i.profile.profile_pic.url %}
+                        <div class="member">
+                            <img class="member_avatar" src="{{i.profile.profile_pic.url}}" alt="NONE">
+                            {{i.username}}
+                        </div>
+                        {%else%}
+                            <img  style="width: 30px; height: 30px;" src="https://storage.googleapis.com/mwt/files/uploads/avatars/user_15216/f2a9bdc0f96a7e017f843e86ca704e3fa7a74778.png">
+                        {%endif%}
+                    {%endfor%}
+                </div>
             </div>
         </div>
     </div>

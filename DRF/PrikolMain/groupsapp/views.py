@@ -48,37 +48,40 @@ def show_group(request, group_slug):
     return render(request, 'groupsapp/Group_profile.html', {'group': group})
 
 
+def add_member(request, group_name):
+    group = MyGroups.objects.get(name=group_name)
+    New = User.objects.get(username = request.user.username)
+    group.members.add(New)
+    return render(request, 'groupsapp/Group_profile.html', {'group': group})
+
+
 def Profile(request):
     return render(request, 'groupsapp/Profile.html')
 
-
-def show_profile(request, id):
-    Profile = get_object_or_404(Profile, id=id)
-    if Profile.user.id == request.user.id:
-        return render(request, 'groupsapp/Profile.html', {'Profile': Profile})
-
-
-class ShowProfilePage(DetailView):
-    model = Profile
-    template_name = 'groupsapp/Profile.html'
-
-    def get_context_data(self, *args, **kwargs):
-        users = Profile.objects.all()
-        context = super(ShowProfilePage, self).get_context_data(*args, **kwargs)
-        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
-        context['page_user'] = page_user
-        return context
-
+# ДОДЕЛАТЬ!!!
+def Edit_Profile(request):
+    request.user.username = request.POST['name']
+    request.user.username = request.POST['name']
+    request.user.username = request.POST['name']
+    request.user.username = request.POST['name']
+    return render(request, 'groupsapp/Profile.html')
 
 def GroupCreationForm(request):
     return render(request, 'groupsapp/GroupCreationForm.html')
 
-
 def CreateGroup(request):
     Group_name = request.POST['group name']
+    kirill = ('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+    find_kirill = [x for x in kirill if x in Group_name.lower()]
+    if find_kirill == []:
+        Group_Slug = Group_name
+    else:
+        Group_Slug = slugify(Group_name)
+    
     Group_place = request.POST['meeting place']
     Group_Date = request.POST.get('meeting date', '2023-10-26 09:16:39')
     Group_Discription = request.POST['discription']
+    Group_Pas = request.POST['Password']
 
     if MyGroups.objects.filter(name=Group_name).exists():
         return render(request, 'groupsapp/GroupCreationForm.html')
@@ -86,8 +89,9 @@ def CreateGroup(request):
         new_group = MyGroups.objects.create(name=Group_name,
                                             meeting_place=Group_place,
                                             meeting_Date=Group_Date,
-                                            slug=slugify(Group_name),
-                                            description=Group_Discription)
+                                            slug = Group_Slug,
+                                            description=Group_Discription,
+                                            password = Group_Pas)
         new_group.save()
 
         group = get_object_or_404(MyGroups, slug=new_group.slug)

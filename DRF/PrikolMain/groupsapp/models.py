@@ -22,11 +22,16 @@ class MyGroups(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to="photos/%Y/%m/%d", blank=True)
     description = models.TextField(blank=True)
+    members = models.ManyToManyField(User)
 
     class Meta:
         verbose_name = 'Все группы'
         verbose_name_plural = 'Все группы'
         ordering = ['name', 'time_create']
+
+    def add_member(self, request):
+        self.members.add(request.User)
+        return reverse('group_profile_url', kwargs={'group_slug': self.slug})
 
     def get_absolute_url(self):
         return reverse('group_profile_url', kwargs={'group_slug': self.slug})
@@ -44,7 +49,7 @@ class Profile(models.Model):
     age = models.IntegerField(null=True, blank=True)
     telefone_num = models.TextField(null=True, blank=True)
     interests = models.TextField(null=True, blank=True)
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="groupsapp/static/img")
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="groupsapp/static/img", default="https://storage.googleapis.com/mwt/files/uploads/avatars/user_15216/f2a9bdc0f96a7e017f843e86ca704e3fa7a74778.png")
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

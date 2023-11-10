@@ -117,6 +117,20 @@
     color: white;   
 }
 
+.profile_info_text_content{
+    color: white; 
+    left: 45px; 
+    top: -2px;
+}
+
+.profile_info_input{
+    color: white;
+    position: absolute;
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+}
+
 .teg{
     width: 140px;
     height: 40px;

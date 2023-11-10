@@ -15,11 +15,8 @@ urlpatterns = [
     path('Logout/', logout_user, name='logout'),
     path('register/', RegisterUser.as_view(), name='register'),
     path('Profile/', Profile, name='profile'),
-    path('Profile/<int:Profile_user_id>', show_profile, name='show_profile_url'),
     path('group/<slug:group_slug>', show_group, name='group_profile_url'),
     path('GroupCreationForm/', GroupCreationForm, name='add_group'),
-    path('GroupCreationForm/CreateGroup', CreateGroup, name='CreateGroup')
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('GroupCreationForm/CreateGroup', CreateGroup, name='CreateGroup'),
+    path('group/<str:group_name>', add_member, name='add_member')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

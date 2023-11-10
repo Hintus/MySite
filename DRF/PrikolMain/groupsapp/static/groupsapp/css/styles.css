@@ -19,6 +19,40 @@ a{
   color: black;
 }
 
+.main_page_left_text{
+  width: 300px;
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  top: 35px;
+  left: 5px;
+}
+
+.main_page_left_title{
+  color: white;
+  position: absolute;
+  left: 58px;
+  top: -10px;
+}
+
+.main_page_right_text{
+  width: 300px;
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  bottom: -20px;
+  right: 10px;
+}
+
+.main_page_right_title{
+  color: white;
+  position: absolute;
+  right: 67px;
+  bottom: 270px;
+}
+
 .center_text{
   display:flex;
   justify-content: center;
@@ -31,7 +65,7 @@ a{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:#35167e;
+  background-color:#36177d;
   margin: 0 auto;
   transform: translate(-10px,60px);
 }
@@ -252,7 +286,8 @@ img{
 
   .join_groups_but{
     margin-right: 10px;
-    padding-top: 2.5px;
+    padding-top: 2.5px  ;
+    font-size: 16px;
     text-align: center;
     height: 30px;
     width: 70px;

@@ -2,7 +2,7 @@
 
 {% block head %}
 {% load static %}
-<title></title>
+<title>{{request.user.username}}</title>
 <link rel="stylesheet" href="{% static 'groupsapp/css/profile.css' %}"/>
 <script type="text/javascript" src="{% static 'groupsapp\js\profile.js' %}" defer></script>
 <script type="text/javascript" src="{% static 'groupsapp\js\edit_profile.js' %}" defer></script>
@@ -22,29 +22,50 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" class="crown">
                 {%endif%}
                 <div class="profile_avatar">
-                    <img src="{{user.profile.profile_pic}}" alt="ОШИБКА">
-                    <!-- <img class="avatar_img" src="https://i.ibb.co/sJsQCnZ/hamster.jpg"> -->
+                    <img style="width: 100%; height: 150px; position: absolute; right: 0px; border-radius: 50%;" src="{{user.profile.profile_pic.url}}" alt="ОШИБКА">                    
                 </div>
                    <div class="profile_online"></div>
                    <div class="profile_ico">
                        <img class="mess_img" src="https://i.ibb.co/wgjx240/envelope.png">
                    </div>
             </div>
-            <div class="profile_name">
+            <div class="profile_name" id = 'name_div'>
                 {{request.user.username}}
             </div>
             <div class="profile_info">
-                <p class="profile_info_text"><b>Age:</b> {{user.profile.age}}</p>
-                <p class="profile_info_text"><b>Telefone number:</b> {{user.profile.telefone_num}}</p>
-                <p class="profile_info_text"><b style="font-size: 16px;">Interests:</b> {{user.profile.interests}}</p>
-                <p class="profile_info_text"><b>Registered sinse:</b> {{request.user.date_joined.day}}.{{request.user.date_joined.month}}.{{request.user.date_joined.year}}</p>       
+                <p class="profile_info_text"><b>Age:</b> </p>
+                <p class="profile_info_text"><b>Telefone number:</b></p>
+                <p class="profile_info_text"><b style="font-size: 16px;">Interests:</b> </p>
+                <p class="profile_info_text"><b>Registered sinse:</b></p>
+                <p style="position: absolute; top: 122px; left: 135px;" class="profile_info_text_content">{{request.user.date_joined.day}}.{{request.user.date_joined.month}}.{{request.user.date_joined.year}}</p>
+                <div style="position: absolute; left: 50px; height: 180px; top: -2px;" id="profile_values">
+                    <p class="profile_info_text_content">{{user.profile.age}}</p>
+                    <!-- информация о пользователе -->
+                    <p style="position: absolute; top: 40px; left: 88px;" class="profile_info_text_content">{%if user.profile.telefone_num %}
+                        {{user.profile.telefone_num}}
+                        {% else %}
+                        Unknown
+                        {% endif %}
+                    </p> 
+                    <p style="position: absolute; top: 82px; left: 35px; width: 500px;" class="profile_info_text_content">{{user.profile.interests}}</p>
+                </div>  
+                <!-- инпуты для изменения  -->
+                <div style="position: absolute;" id="inputs">                    
+                    <input style="left: 35px; top: 7px;" class="profile_info_input" type="text">
+                    <input style="left: 125px; top: 48px;" class="profile_info_input" type="text">
+                    <input style="left: 73px; top: 89px;" class="profile_info_input" type="text">
+                    <input style="left: 180px; top: -60px; width: 300px;" class="profile_info_input" type="text">
+                </div> 
             </div>
-            <div class="teg">@Homiak</div>
-            <div class="profile_group_back">       
+            <div class="teg">@{{request.user.username}}</div>
+            <div class="profile_group_back">
             <div class="profile_group_message">
                 Ваши группы
             </div>
                 <div class ="profile_group_content_block">
+                    {% for group in request.user.MyGroups.all %}
+                    a
+                    {% endfor %}
                 </div>
             </div>
         </div>
